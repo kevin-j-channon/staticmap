@@ -36,6 +36,12 @@ namespace staticmap
 			}
 		}
 
+		TEST_METHOD(AtThrowsOutOfRangeIfKeyNotFound)
+		{
+			const auto m = StaticMap<int, std::string, 5>{ {1, "One"}, {2, "Two"}, {3, "Three"}, {4, "Four"}, {5, "Five"} };
+			Assert::ExpectException<std::out_of_range>([&m]() {m.at(10); });
+		}
+
 		TEST_METHOD(With)
 		{
 
@@ -47,6 +53,12 @@ namespace staticmap
 			{
 				Assert::AreEqual(i + 1, m.with(values[i]));
 			}
+		}
+
+		TEST_METHOD(WithThrowsOutOfRangeIfValueNotFound)
+		{
+			const auto m = StaticMap<int, std::string, 5>{ {1, "One"}, {2, "Two"}, {3, "Three"}, {4, "Four"}, {5, "Five"} };
+			Assert::ExpectException<std::out_of_range>([&m]() {m.with("Foo"); });
 		}
 	};
 }
