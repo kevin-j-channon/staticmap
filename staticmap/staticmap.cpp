@@ -30,7 +30,7 @@ namespace staticmap
 			
 			const auto expected = std::array<std::string, 5>{ "One", "Two", "Three", "Four", "Five" };
 
-			for ( int i = 0; i < 5; ++i )
+			for (auto i : {0, 1, 2, 3, 4})
 			{
 				Assert::AreEqual(expected[i], m.at(i + 1));
 			}
@@ -49,7 +49,7 @@ namespace staticmap
 
 			const auto values = std::array<std::string, 5>{ "One", "Two", "Three", "Four", "Five" };
 
-			for (int i = 0; i < 5; ++i)
+			for (auto i : { 0, 1, 2, 3, 4 })
 			{
 				Assert::AreEqual(i + 1, m.with(values[i]));
 			}
